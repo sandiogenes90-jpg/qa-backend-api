@@ -4,12 +4,13 @@
 ![Kotlin](https://img.shields.io/badge/kotlin-1.9-blue?logo=kotlin)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
+
 Projeto de QA Backend focado em testes automatizados de API REST, utilizando **Kotlin**, **RestAssured** e **JUnit 5**.  
 O objetivo é validar endpoints reais, cobrindo cenários positivos e negativos, com uma estrutura organizada, escalável e alinhada a boas práticas utilizadas em times profissionais de qualidade.
 
 ---
 
-## 🎯 Objetivo do Projeto
+ 🎯 Objetivo do Projeto
 Demonstrar habilidades práticas como QA Backend, incluindo:
 - Testes automatizados de API REST  
 - Validação de status HTTP e payload JSON  
@@ -20,7 +21,7 @@ Demonstrar habilidades práticas como QA Backend, incluindo:
 
 ---
 
-## 🧰 Stack Utilizada
+ 🧰 Stack Utilizada
 - Kotlin  
 - RestAssured  
 - JUnit 5  
@@ -30,7 +31,7 @@ Demonstrar habilidades práticas como QA Backend, incluindo:
 
 
 
-## 📁 Estrutura do Projeto
+ 📁 Estrutura do Projeto
 src/test/kotlin
 └── api
 ├── BaseApiTest.kt
@@ -42,14 +43,15 @@ src/test/kotlin
 
 ---
 
-## 📌 Organização
+ 📌 Organização
 - **BaseApiTest** → centraliza configurações comuns (baseURI e porta), evitando duplicação e facilitando manutenção.  
 - **health** → agrupa testes relacionados ao endpoint `/health`, seguindo organização por domínio/feature.  
 
 ---
 
-## 🧪 Cenários Testados
-### ✅ Cenário Positivo
+ 🧪 Cenários Testados
+
+ ✅ Cenário Positivo
 **Endpoint:** `GET /health`  
 **Esperado:**  
 - Status Code: `200 OK`  
@@ -58,21 +60,21 @@ src/test/kotlin
 ```json
 { "status": "UP" }
 
-## ❌ Cenário Negativo
+ ❌ Cenário Negativo
 Endpoint: GET /health/invalid  
 Esperado:
 
 Status Code: 404 Not Found
 
 
-## Como Subir a API Fake
+ Como Subir a API Fake
 
 mkdir fake-api
 cd fake-api
 npm init -y
 npm install express
 
-## Crie o arquivo server.js
+ Crie o arquivo server.js
 
 const express = require('express');
 const app = express();
@@ -85,8 +87,8 @@ app.listen(8080, () => {
   console.log('Fake API running on http://localhost:8080');
 });
 
-** Execute
-## node server.js
+ Execute
+ node server.js
 
 ▶️ Como Rodar os Testes
 Com a API rodando em http://localhost:8080
@@ -96,19 +98,19 @@ Com a API rodando em http://localhost:8080
 
 🚀 Instalação Rápida
 
-* Clone o repositório:
-## git clone git@github.com:sandiogenes90-jpg/qa-backend-api.git
+ Clone o repositório:
+ git clone git@github.com:sandiogenes90-jpg/qa-backend-api.git
 
-* Suba a API fake:
-## node server.js
+ Suba a API fake:
+ node server.js
 
-* Rode os testes:
-## ./gradlew clean test
-
+ Rode os testes:
+ ./gradlew clean test
 
 📜 Licença
-Este projeto está licenciado sob os termos da licença MIT.
-Veja o arquivo [Parece que o resultado não era seguro para exibição. Vamos mudar as coisas e tentar outra opção!] para mais detalhes.
+
+Este projeto está licenciado sob os termos da licença MIT.  
+Veja o arquivo `LICENSE` para mais detalhes.
 
 
 👤 Autor
