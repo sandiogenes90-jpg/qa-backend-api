@@ -127,23 +127,7 @@ Contrato de resposta JSON
 
 
 
-🧪 API Fake (Backend de Teste)
-
-Este projeto utiliza uma API fake em Node.js + Express apenas para fins de teste.
-
-Ela simula um backend real para permitir a validação de:
-
-Comunicação HTTP
-
-Status codes
-
-Contrato de resposta JSON
-
-⚠️ O foco do projeto não é a API, mas sim a qualidade, organização e confiabilidade dos testes automatizados.
-
-
-▶️ Como Subir a API Fakk
-
+▶️ Como Subir a API Fake 
 
 mkdir fake-api
 cd fake-api
