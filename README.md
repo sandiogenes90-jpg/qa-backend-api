@@ -1,20 +1,55 @@
 # QA Backend API — Health Check Tests
 
-Projeto de **QA Backend** focado em testes automatizados de API REST utilizando **Kotlin, RestAssured e JUnit 5**.
+Projeto de **QA Backend** focado em testes automatizados de **API REST**, utilizando **Kotlin, RestAssured e JUnit 5**.
 
-O objetivo é validar endpoints reais, cobrindo cenários **positivos e negativos**, com uma estrutura organizada e preparada para escalar.
+O objetivo é validar **endpoints reais**, cobrindo cenários **positivos e negativos**, com uma estrutura organizada, escalável e alinhada a boas práticas utilizadas em **times profissionais de qualidade**.
 
 ---
 
 ## 🎯 Objetivo do Projeto
 
-Este projeto foi criado para demonstrar habilidades práticas de **QA Backend**, incluindo:
+Demonstrar habilidades práticas como **QA Backend**, incluindo:
 
-- Testes de API real (não mockada)
+- Testes automatizados de API REST
 - Validação de status HTTP e payload JSON
-- Organização de testes por domínio
-- Execução via Gradle no terminal
-- Estrutura alinhada a padrões usados em times profissionais
+- Cobertura de cenários positivos e negativos
+- Organização de testes por domínio/feature
+- Execução via linha de comando (CLI)
+- Estrutura preparada para evolução do projeto
+
+---
+
+## 🧰 Stack Utilizada
+
+- **Kotlin**
+- **RestAssured**
+- **JUnit 5**
+- **Gradle**
+- **Node.js + Express** (API fake para testes)
+- **Git**
+
+---
+
+## 📁 Estrutura do Projeto
+
+# QA Backend API — Health Check Tests
+
+Projeto de **QA Backend** focado em testes automatizados de **API REST**, utilizando **Kotlin, RestAssured e JUnit 5**.
+
+O objetivo é validar **endpoints reais**, cobrindo cenários **positivos e negativos**, com uma estrutura organizada, escalável e alinhada a boas práticas utilizadas em **times profissionais de qualidade**.
+
+---
+
+## 🎯 Objetivo do Projeto
+
+Demonstrar habilidades práticas como **QA Backend**, incluindo:
+
+- Testes automatizados de API REST
+- Validação de status HTTP e payload JSON
+- Cobertura de cenários positivos e negativos
+- Organização de testes por domínio/feature
+- Execução via linha de comando (CLI)
+- Estrutura preparada para evolução do projeto
 
 ---
 
@@ -39,38 +74,84 @@ src/test/kotlin
 └── HealthNegativeTest.kt
 
 
-### 📌 Organização
-- `BaseApiTest`: centraliza configurações comuns (baseURI e porta)
-- `health`: testes relacionados ao endpoint `/health`
-- Separação clara entre testes positivos e negativos
 
----
+
+### 📌 Organização
+
+**BaseApiTest**  
+Centraliza configurações comuns (baseURI e porta), evitando duplicação e facilitando manutenção e mudança de ambiente.
+
+**health**  
+Agrupa testes relacionados ao endpoint `/health`, seguindo organização por domínio/feature, padrão usado em times profissionais.
+
 
 ## 🧪 Cenários Testados
 
-### ✅ Teste Positivo
-- Verifica se o endpoint `/health` retorna:
-  - HTTP 200
-  - Content-Type JSON
-  - Campo `status` com valor `"UP"`
+### ✅ Cenário Positivo
 
-### ❌ Teste Negativo
-- Verifica se um endpoint inexistente (`/health/invalid`) retorna:
-  - HTTP 404
+**Endpoint:** `GET /health`
 
----
-
-## 🚀 Como Subir a API Fake
+**Esperado:**
+- Status Code: `200 OK`
+- Content-Type: `application/json`
+- Body:
+```json
+{ "status": "UP" }
 
 
+❌ Cenário Negativo
 
-### Criar e subir a API
-```bash
+Endpoint: GET /health/invalid
+
+Esperado:
+
+Status Code: 404 Not Found
+
+Esses cenários validam tanto o fluxo feliz quanto o comportamento da API em casos de erro, reforçando a confiabilidade do sistema.
+
+
+
+🧪 API Fake (Backend de Teste)
+
+Este projeto utiliza uma API fake em Node.js + Express apenas para fins de teste.
+
+Ela simula um backend real para permitir a validação de:
+
+Comunicação HTTP
+
+Status codes
+
+Contrato de resposta JSON
+
+⚠️ O foco do projeto não é a API, mas sim a qualidade, organização e confiabilidade dos testes automatizados.
+
+
+
+🧪 API Fake (Backend de Teste)
+
+Este projeto utiliza uma API fake em Node.js + Express apenas para fins de teste.
+
+Ela simula um backend real para permitir a validação de:
+
+Comunicação HTTP
+
+Status codes
+
+Contrato de resposta JSON
+
+⚠️ O foco do projeto não é a API, mas sim a qualidade, organização e confiabilidade dos testes automatizados.
+
+
+▶️ Como Subir a API Fakk
+
+
 mkdir fake-api
 cd fake-api
 npm init -y
 npm install express
 
+
+Crie o arquivo server.js:
 
 const express = require('express');
 const app = express();
@@ -87,3 +168,22 @@ app.listen(8080, () => {
 
 node server.js
 
+
+
+▶️ Como Rodar os Testes
+
+Com a API rodando em http://localhost:8080:
+
+./gradlew clean test
+
+
+Os testes serão executados via Gradle, diretamente pelo terminal.
+
+
+
+
+
+## 👤 Autor
+
+Diógenes J. de Santana  
+QA Backend em formação, com foco em testes automatizados de API, qualidade de software e boas práticas de automação.
