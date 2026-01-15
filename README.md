@@ -156,6 +156,33 @@ cd fake-api && node server.js
 
 ---
 
+
+## 🧪 Teste de Contrato — `/health` Endpoint
+
+Este projeto inclui um **teste de contrato real** para o endpoint `/health` usando **JSON Schema**.  
+O objetivo é garantir que a API retorne sempre os campos esperados, evitando breaking changes.
+
+### 📌 Regras do contrato
+
+- Campo `status` sempre existe  
+- Tipo: `string`  
+- Campos extras **não são permitidos**  
+
+### 🛠️ Tecnologias
+
+- Kotlin + RestAssured + JUnit 5  
+- Gradle para build e execução de testes  
+- Estrutura escalável para novos endpoints  
+
+### ⚙️ Como rodar o teste
+
+No terminal, dentro do projeto:
+
+```bash
+./gradlew clean test
+
+
+
 ##  📝 Licença
 
 MIT License
