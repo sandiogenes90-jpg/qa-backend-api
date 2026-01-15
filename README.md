@@ -53,12 +53,12 @@ Demonstrar habilidades práticas como **QA Backend**, incluindo:
 
 ## 📁 Estrutura do Projeto
 
-src/test/kotlin
-└── api
-├── BaseApiTest.kt
-└── health
-├── HealthApiTest.kt
-└── HealthNegativeTest.kt
+-src/test/kotlin
+-└── api
+-├── BaseApiTest.kt
+-└── health
+-├── HealthApiTest.kt
+-└── HealthNegativeTest.kt
 
 
 ---
@@ -81,6 +81,8 @@ src/test/kotlin
 ```json
 { "status": "UP" }
 
+---
+
 ## ❌ Cenário Negativo
 
 *Endpoint: GET /health/invalid
@@ -88,6 +90,8 @@ src/test/kotlin
 Esperado:
 
 Status Code: 404 Not Found
+
+---
 
 ## ⚙️ Como Subir a API Fake
 
@@ -115,6 +119,7 @@ app.listen(8080, () => {
 
 node server.js
 
+---
 
 ## ▶️ Como Rodar os Testes
 
@@ -122,6 +127,7 @@ Com a API rodando em http://localhost:8080
 
 ./gradlew clean test
 
+---
 
 ## 🎥 Gravando os Testes (Opcional)
 
@@ -133,6 +139,7 @@ Para reproduzir localmente:
 
 asciinema play assets/test-recording-v2.cast
 
+---
 
 ##  ⚡ Instalação Rápida
 
@@ -147,16 +154,19 @@ cd fake-api && node server.js
 
 ./gradlew clean test
 
+---
 
 ##  📝 Licença
 
 MIT License
 
+---
 
 ##  👤 Autor
 
 Diógenes J de Santana
 
+---
 
 ## 🎨 Extras Visuais
 
