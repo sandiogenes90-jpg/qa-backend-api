@@ -182,6 +182,18 @@ No terminal, dentro do projeto:
 ./gradlew clean test
 
 
+## ▶️ Como Rodar os Testes
+
+Com a API rodando em http://localhost:8080
+
+./gradlew clean test
+
+## 🎥 Execução dos Testes (Asciinema)
+
+- Gravação curta: [assista aqui](assets/health-contract-short.cast) / [link público](https://asciinema.org/a/VNHAsI6bcCBDS55F)
+- Gravação completa: [assista aqui](assets/health-contract.cast) / [link público](https://asciinema.org/a/ljwOBlX7TM0ieCF8)
+
+
 
 ##  📝 Licença
 
