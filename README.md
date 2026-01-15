@@ -1,111 +1,103 @@
-QA Backend API — Health Check Tests
+# QA Backend API — Health Check Tests
+
+![QA Backend Banner](assets/banner-qa-backend.png)
+
+![Build Status](https://github.com/sandiogenes90-jpg/qa-backend-api/actions/workflows/gradle.yml/badge.svg)
+![Kotlin](https://img.shields.io/badge/Kotlin-1.9-blue?logo=kotlin)
+![Gradle](https://img.shields.io/badge/Gradle-8.3-brightgreen?logo=gradle)
+![Node.js](https://img.shields.io/badge/Node.js-20.6-green?logo=node.js)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+
+---
+
+## 📖 Sumário
+
+- [Objetivo do Projeto](#objetivo-do-projeto)
+- [Stack Utilizada](#stack-utilizada)
+- [Estrutura do Projeto](#estrutura-do-projeto)
+- [Organização](#organização)
+- [Cenários Testados](#cenários-testados)
+- [Como Subir a API Fake](#como-subir-a-api-fake)
+- [Como Rodar os Testes](#como-rodar-os-testes)
+- [Gravando os Testes](#gravando-os-testes)
+- [Instalação Rápida](#instalação-rápida)
+- [Licença](#licença)
+- [Autor](#autor)
+- [Extras Visuais](#extras-visuais)
+
+---
+
+## 🎯 Objetivo do Projeto
+
+Demonstrar habilidades práticas como **QA Backend**, incluindo:
+
+- Testes automatizados de **APIs REST**  
+- Validação de **status HTTP** e **payload JSON**  
+- Cobertura de cenários **positivos e negativos**  
+- Organização de testes por **domínio/feature**  
+- Execução via **linha de comando (CLI)**  
+- Estrutura preparada para **evolução e manutenção do projeto**
+
+---
+
+## 🧰 Stack Utilizada
+
+- Kotlin  
+- RestAssured  
+- JUnit 5  
+- Gradle  
+- Node.js + Express (API fake para testes)  
+- Git  
+
+---
+
+## 📁 Estrutura do Projeto
+
+src/test/kotlin
+└── api
+├── BaseApiTest.kt
+└── health
+├── HealthApiTest.kt
+└── HealthNegativeTest.kt
 
 
+---
 
+## 📌 Organização
 
+- **BaseApiTest** → centraliza configurações comuns (baseURI e porta), evitando duplicação  
+- **health** → agrupa testes relacionados ao endpoint `/health`, seguindo organização por domínio/feature  
 
+---
 
+## 🧪 Cenários Testados
 
-
-
-
-📖 Sumário
-
-Objetivo do Projeto
-
-Stack Utilizada
-
-Estrutura do Projeto
-
-Organização
-
-Cenários Testados
-
-Como Subir a API Fake
-
-Como Rodar os Testes
-
-Instalação Rápida
-
-Licença
-
-Autor
-
-🎯 Objetivo do Projeto
-
-Demonstrar habilidades práticas como QA Backend, incluindo:
-
-Testes automatizados de APIs REST
-
-Validação de status HTTP e payload JSON
-
-Cobertura de cenários positivos e negativos
-
-Organização de testes por domínio/feature
-
-Execução via linha de comando (CLI)
-
-Estrutura preparada para evolução e manutenção do projeto
-
-🧰 Stack Utilizada
-
-Kotlin
-
-RestAssured
-
-JUnit 5
-
-Gradle
-
-Node.js + Express (API fake para testes)
-
-Git
-
-📁 Estrutura do Projeto
-src/test/kotlin/
-└── api/
-    ├── BaseApiTest.kt
-    └── health/
-        ├── HealthApiTest.kt
-        └── HealthNegativeTest.kt
-
-📌 Organização
-
-BaseApiTest → centraliza configurações comuns (baseURI e porta), evitando duplicação e facilitando manutenção.
-
-health → agrupa testes relacionados ao endpoint /health, seguindo organização por domínio/feature.
-
-🧪 Cenários Testados
-✅ Cenário Positivo
-
-Endpoint: GET /health
-
-Esperado:
-
-Status Code: 200 OK
-
-Content-Type: application/json
-
-Body:
-
+### ✅ Cenário Positivo
+- **Endpoint:** `GET /health`  
+- **Esperado:**  
+  - Status Code: `200 OK`  
+  - Content-Type: `application/json`  
+  - Body:
+```json
 { "status": "UP" }
 
-❌ Cenário Negativo
+## ❌ Cenário Negativo
 
-Endpoint: GET /health/invalid
+*Endpoint: GET /health/invalid
 
 Esperado:
 
 Status Code: 404 Not Found
 
-⚙️ Como Subir a API Fake
-mkdir fake-api
-cd fake-api
-npm init -y
-npm install express
+## ⚙️ Como Subir a API Fake
+
+-mkdir fake-api
+-cd fake-api
+-npm init -y
+-npm install express
 
 
-Crie o arquivo server.js:
+## Crie o arquivo server.js:
 
 const express = require('express');
 const app = express();
@@ -119,30 +111,55 @@ app.listen(8080, () => {
 });
 
 
-Execute a API:
+## Execute:
 
 node server.js
 
-▶️ Como Rodar os Testes
 
-Com a API rodando em http://localhost:8080:
+## ▶️ Como Rodar os Testes
+
+Com a API rodando em http://localhost:8080
 
 ./gradlew clean test
 
-⚡ Instalação Rápida
+
+## 🎥 Gravando os Testes (Opcional)
+
+Gravamos a execução do terminal usando asciinema:
+
+Arquivo de gravação: assets/test-recording-v2.cast
+
+Para reproduzir localmente:
+
+asciinema play assets/test-recording-v2.cast
+
+
+##  ⚡ Instalação Rápida
+
 git clone https://github.com/sandiogenes90-jpg/qa-backend-api.git
 cd qa-backend-api
 
+### Subir API fake
 
-Subir API fake: cd fake-api && node server.js
+cd fake-api && node server.js
 
-Rodar testes: ./gradlew clean test
+### Rodar testes
 
-📄 Licença
+./gradlew clean test
 
-MIT License © 2026
 
-👤 Autor
+##  📝 Licença
+
+MIT License
+
+
+##  👤 Autor
 
 Diógenes J de Santana
-QA Backend | Automação de Testes | API Testing
+
+
+## 🎨 Extras Visuais
+
+Banner do projeto: assets/banner-qa-backend.png
+
+Diagrama do projeto: assets/A_README_document_in_Portuguese_showcases_a_QA_Bac.png
