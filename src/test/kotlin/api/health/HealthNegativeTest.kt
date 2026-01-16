@@ -1,27 +1,29 @@
 package api.health
 
-import io.restassured.RestAssured
-import org.junit.jupiter.api.BeforeAll
+import io.restassured.RestAssured.given
 import org.junit.jupiter.api.Test
+import api.BaseApiTest
 
-class HealthNegativeTest {
+class HealthNegativeTest : BaseApiTest() {
 
-    companion object {
-        @JvmStatic
-        @BeforeAll
-        fun setup() {
-            RestAssured.baseURI = "http://localhost"
-            RestAssured.port = 8080
-        }
+    @Test
+    fun `should return 405 for invalid method POST`() {
+        given()
+            .body("{ \"status\": \"UP\" }")
+            .`when`()
+            .post("/health")
+            .then()
+            .statusCode(405) // Ajuste se seu backend retorna outro código
     }
 
     @Test
-    fun `deve retornar 404 para endpoint inexistente`() {
-        RestAssured
-            .given()
+    fun `should fail for missing headers`() {
+        given()
+            .header("X-Custom", "")
             .`when`()
-            .get("/health/invalid")
+            .get("/health")
             .then()
-            .statusCode(404)
+            .statusCode(400) // Ajuste conforme comportamento real
     }
+
 }
