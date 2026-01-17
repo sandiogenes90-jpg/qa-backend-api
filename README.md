@@ -52,16 +52,18 @@ Demonstrar habilidades práticas como **QA Backend**, incluindo:
 
 ## 📁 Estrutura do Projeto
 
+src/test/kotlin/ ──┐
+                   └── api/ ──┐
+                              ├── BaseApiTest.kt          # Configurações comuns (baseURI, porta)
+                              └── health/ ──┐
+                                            ├── HealthContractTest.kt   # Teste de contrato do endpoint /health
+                                            └── HealthNegativeTest.kt   # Teste negativo simples
+server-completo.js                       # API fake
+src/test/resources/contracts/ ──┐
+                                 └── health.schema.json       # JSON Schema do /health
    
-src/test/kotlin/
-└── api
-├── BaseApiTest.kt # Configurações comuns (baseURI, porta)
-└── health
-├── HealthContractTest.kt # Teste de contrato do endpoint /health
-└── HealthNegativeTest.kt # Teste negativo simples
-server-completo.js # API fake
-src/test/resources/contracts/
-└── health.schema.json # JSON Schema do /health
+
+
 
 ---
 
@@ -78,71 +80,71 @@ src/test/resources/contracts/
 
 - **Endpoint:** `GET /health`  
 - **Esperado:**  
-  ```json
-  { "status": "UP" }
+-  ```json
+-  { "status": "UP" }
 
-**Status Code: 200 OK** 
-**Content-Type: application/json**
+-**Status Code: 200 OK** 
+-**Content-Type: application/json**
 
 
 ## ❌ Cenário Negativo
 
-**Teste de contrato negativo: resposta sem o campo obrigatório (***status***) deve falhar**
+-**Teste de contrato negativo: resposta sem o campo obrigatório (***status***) deve falhar**
 
-**Outros cenários:**
-*POST /health → 405 Method Not Allowed*
-*Headers inválidos → 400 Bad Request*
+-**Outros cenários:**
+-*POST /health → 405 Method Not Allowed*
+-*Headers inválidos → 400 Bad Request*
 
 ---
 
 
 ## ⚙️ Como Subir a API Fake
 
-**mkdir** fake-api
-**cd** fake-api
-npm init -y
-npm install express
+-**mkdir** fake-api
+-**cd** fake-api
+-npm init -y
+-npm install express
 
 **Crie o arquivo (server-completo.js:)**
 
-const express = require('express');
-const app = express();
+-const express = require('express');
+-const app = express();
 
-app.get('/health', (req, res) => {
+-app.get('/health', (req, res) => {
   res.json({ status: 'UP' });
-});
+-});
 
-app.listen(8080, () => {
+-app.listen(8080, () => {
   console.log('Fake API running on http://localhost:8080');
-});
+-});
 
-**Execute a API:**
+-**Execute a API:**
 
-***node server-completo.js***
+-***node server-completo.js***
 
 
 ▶️ ##**Como Rodar os Testes**
 
 Com a API rodando em ***http://localhost:8080***:
 
-./gradlew clean test
-✅ Resultado esperado: build verde, testes de contrato e negativos passando
+-./gradlew clean test
+-✅ Resultado esperado: build verde, testes de contrato e negativos passando
 
 ---
 
-🧪 ##**Teste de Contrato — ***/health*** Endpoint**
+🧪 ##**Teste de Contrato** — ***/health*** Endpoint**
 
 **Validação via JSON Schema:**
 
-Campo ***status*** é obrigatório
+-Campo ***status*** é obrigatório
 
-Tipo: ***string***
+-Tipo: ***string***
 
-Campos extras não são permitidos
+-Campos extras não são permitidos
 
 **Tecnologias**: Kotlin + RestAssured + JUnit 5 + Gradle
 
-Estrutura escalável para adicionar novos endpoints
+-Estrutura escalável para adicionar novos endpoints
 
 
 ---
@@ -150,42 +152,42 @@ Estrutura escalável para adicionar novos endpoints
 
 ## 🎥 Execução dos Testes (Asciinema)
 
- Gravação: [assista aqui](assets/health-contract-short.cast) / [link público](https://asciinema.org/a/VNHAsI6bcCBDS55F)
- Gravação: [assista aqui](assets/health-contract.cast) / [link público](https://asciinema.org/a/ljwOBlX7TM0ieCF8)
+ -Gravação: [assista aqui](assets/health-contract-short.cast) / [link público](https://asciinema.org/a/VNHAsI6bcCBDS55F)
+ -Gravação: [assista aqui](assets/health-contract.cast) / [link público](https://asciinema.org/a/ljwOBlX7TM0ieCF8)
 
 ---
 
 
 ## ⚡ Instalação Rápida
 
-git clone https://github.com/sandiogenes90-jpg/qa-backend-api.git
-cd qa-backend-api
+-git clone https://github.com/sandiogenes90-jpg/qa-backend-api.git
+-cd qa-backend-api
 
 # Subir API fake
-cd fake-api && node server-completo.js
+-cd fake-api && node server-completo.js
 
 # Rodar testes
-./gradlew clean test
+-./gradlew clean test
 
 ---
 
 ## 📝 Licença
 
-**MIT License**
+-**MIT License**
 
 ---
 
 ## 👤 Autor
 
-**Diógenes J. de Santana**
+-**Diógenes J. de Santana**
 
 ---
 
 ## 🎨 Extras Visuais
 
-Banner do projeto: assets/banner-qa-backend.png
+-Banner do projeto: assets/banner-qa-backend.png
 
-Diagrama do projeto: assets/A_README_document_in_Portuguese_showcases_a_QA_Bac.png
+-Diagrama do projeto: assets/A_README_document_in_Portuguese_showcases_a_QA_Bac.png
 
 
 
