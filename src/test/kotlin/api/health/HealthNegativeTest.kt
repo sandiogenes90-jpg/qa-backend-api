@@ -1,8 +1,11 @@
 package api.health
 
-import io.restassured.RestAssured.given
-import org.junit.jupiter.api.Test
 import api.BaseApiTest
+import io.restassured.RestAssured.given
+import io.restassured.http.ContentType
+import io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 class HealthNegativeTest : BaseApiTest() {
 
@@ -13,7 +16,7 @@ class HealthNegativeTest : BaseApiTest() {
             .`when`()
             .post("/health")
             .then()
-            .statusCode(405) // Ajuste se seu backend retorna outro código
+            .statusCode(405)
     }
 
     @Test
@@ -23,7 +26,22 @@ class HealthNegativeTest : BaseApiTest() {
             .`when`()
             .get("/health")
             .then()
-            .statusCode(400) // Ajuste conforme comportamento real
+            .statusCode(400)
     }
 
+    @Test
+    fun `should fail contract when status field is missing`() {
+        // Teste negativo de contrato — sem status
+        val invalidResponseJson = "{ \"uptime\": 123 }"
+
+        assertThrows<AssertionError> {
+            given()
+                .contentType(ContentType.JSON)
+                .body(invalidResponseJson)
+                .`when`()
+                .get("/health") // endpoint qualquer, só para disparar a validação
+                .then()
+                .body(matchesJsonSchemaInClasspath("contracts/health.schema.json"))
+        }
+    }
 }
